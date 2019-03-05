@@ -8,7 +8,7 @@
 
 
 <div>
-    <form method="post">
+    <form method="post" action="add">
         <input type="text" name = "projectname" placeholder="Music project name">
         <input type="text" name="title" placeholder="Title">
         <button type="submit">Add</button>
@@ -17,6 +17,13 @@
     </form>
 </div>
 
+<div>
+    <form method="post" action="filter">
+        <input type="text" name="projectname", placeholder="filter by projectname">
+        <button type="submit">find</button>
+
+    </form>
+</div>
 <div> Music list
 {{#music}}
     <div>

@@ -28,7 +28,7 @@ public class MusicController {
     }
 
 
-    @RequestMapping
+    @RequestMapping("add")
     public String add(
             @RequestParam String projectname,
             @RequestParam String title,
@@ -36,10 +36,28 @@ public class MusicController {
     ){
         MusicModel musicModel = new MusicModel(projectname,title);
         musicRepository.save(musicModel);
+
         List<MusicModel> all = musicRepository.findAll();
         model.put("music",all);
         return "index";
     }
+    @RequestMapping("filter")
+    public String filter(
+            @RequestParam String projectname,
+            Map<String, Object> model
+    ){
+        List<MusicModel> musicModels;
+        if(projectname!=""){
+            musicModels = musicRepository.findByProjectname(projectname);}
+        else{
+            musicModels = musicRepository.findAll();
+        }
+
+        model.put("music",musicModels);
+
+        return "index";
+    }
+
 
 
 }
