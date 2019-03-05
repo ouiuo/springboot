@@ -1,13 +1,19 @@
 package com.example.anotherone.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
+import java.io.Serializable;
+
+
 
 @Entity
+@Table(name = "musicproject")
 public class MusicModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
 
     @Column(columnDefinition = "projectname")
     private String projectname;
@@ -15,17 +21,25 @@ public class MusicModel {
     @Column(columnDefinition = "title")
     private String title;
 
-    public MusicModel(){}
 
-    public MusicModel(String projectname, String title) {
+
+
+    public MusicModel() {
+    }
+    public MusicModel(long id, String projectname, String title){
+        this.id = id;
         this.projectname = projectname;
         this.title = title;
     }
 
-    public MusicModel(long id, String projectname, String title) {
-        this.id = id;
+    public MusicModel(String projectname, String title){
         this.projectname = projectname;
         this.title = title;
+    }
+
+    public void setState(MusicModel music){
+        this.projectname =music.getProjectname();
+        this.title = music.getTitle();
     }
 
     public long getId() {
@@ -51,4 +65,5 @@ public class MusicModel {
     public void setTitle(String title) {
         this.title = title;
     }
+
 }

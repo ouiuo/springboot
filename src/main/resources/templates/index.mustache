@@ -2,9 +2,28 @@
 <html>
 <head>
     <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<div> Hello, {{name}}</div>
+
+
+<div>
+    <form method="post">
+        <input type="text" name = "projectname" placeholder="Music project name">
+        <input type="text" name="title" placeholder="Title">
+        <button type="submit">Add</button>
+        <button type="button">idk</button>
+        <button type="reset">reset</button>
+    </form>
+</div>
+
+<div> Music list
+{{#music}}
+    <div>
+        <a>{{id}}</a>
+        <i>{{projectname}}</i>
+        <span>{{title}}</span>
+    </div>
+{{/music}}</div>
 </body>
 </html>
